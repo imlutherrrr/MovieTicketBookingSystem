@@ -1,1 +1,2 @@
-# MovieTicketBookingSystem
+Movie Ticket Booking System:
+Developed a Movie Ticket Booking System using Python, enabling users to browse movies, select showtimes, and book tickets seamlessly. Implemented features for user authentication, seat selection, and payment integration to ensure a smooth and secure booking experience. Focused on creating an intuitive user interface and efficient backend logic for managing bookings and availability.
