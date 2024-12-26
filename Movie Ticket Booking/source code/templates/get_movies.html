@@ -1,0 +1,20 @@
+<div class="container-fluid">
+        <div class="row">
+            {% for movie in movies %}
+            <div class="col-md-3">
+                <div class="movie mt-5">
+                    <div class="text-center"><img class="movie_image" src="../static/picture/{{movie[2]}}" style="height:200px;width:max-width;"></div>
+                    <div class="text-center h5">{{movie[1]}}</div>
+                    <div><b>Duration:</b>{{movie[3]}}</div>
+                    <div><b>Genre:</b>{{movie[4]}}</div>
+                    <div class="description"><b>Description:</b>{{movie[5]}}</div>
+                    <div><b>Release Date:</b>{{movie[7]}}</div>
+                    <form action="assign_movies" method="post">
+                        <input type="hidden" id="movies_id" name="movies_id" value="{{movie[0]}}">
+                        <input type="submit" value="Assign" id="btn" class="btn btn-primary mt-3 w-50" >
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>

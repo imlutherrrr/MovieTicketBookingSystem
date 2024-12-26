@@ -1,0 +1,35 @@
+{% include "main_head.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-5">
+            <div class="card p-3 mt-5">
+                <h4 class="text-center">User Registration</h4>
+                <form action="user_registration1" method="post">
+                    <div class="mt-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control" required>
+                    </div>
+                    <div class="mt-2">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Enter Email" class="form-control" required>
+                    </div>
+                    <div class="mt-2">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" name="phone" id="phone" placeholder="Enter Phone" class="form-control" required>
+                    </div>
+                    <div class="mt-2">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control" required>
+                    </div>
+                    <div class="mt-2">
+                        <input type="submit" value="Register" id="btn" class="btn btn-success w-100">
+                    </div>
+                </form>
+                <div class="mt-2">Already an User?<a href="user_login" class="text-center">Login Here</a></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+
+{% for theatre in theatres %}
+{% set screens = get_screens_by_theatre(theatre[0]) %}
+<optgroup label="{{theatre[1]}}">
+  {% for screen in screens %}
+    <option value="{{screen[0]}}">{{screen[5]}}</option>
+  {% endfor %}
+</optgroup>
+{% endfor %}

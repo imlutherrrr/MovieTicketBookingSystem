@@ -1,0 +1,58 @@
+{% if session['role'] == 'admin' %}
+    {% include "admin_head.html" %}
+{% elif session['role'] == 'user' %}
+    {% include "user_head.html" %}
+{% else %}
+    {% include "main_head.html" %}
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% for booking in bookings %}
+            {% if booking[3] != 'payment pending' %}
+            {% set movies = get_movies_by_now_showing_id(booking[6]) %}
+            {% set screens = get_screen_by_now_showing_id(booking[6]) %}
+            {% set theatres = get_theatre_by_now_showing_id(booking[6]) %}
+            {% set timings = get_timings_by_now_showing_id(booking[6]) %}
+            <div class="card p-3 mt-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="movie_image" src="../static/picture/{{movies[2]}}" style="height:150px;width:max-width;">
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="text-center">{{movies[1]}}</h4>
+                        <h5 class="text-center">{{theatres[1]}}</h5>
+                        <h6 class="text-center">{{screens[5]}}</h6>
+                        <div><b>Customer Name: </b>{{user[1]}}</div>
+                        <div><b>Show Date:  </b>{{booking[4]}}</div>
+                        <div><b>Show Time:  </b>{{str(timings[2])[:-3]}}</div>
+                            {% if booking[3] != 'Ticket Cancelled' %}
+                                <div><b>Status:  </b><b class="text-success">{{booking[3]}}</b></div>
+                            {% elif booking[3] != 'Ticket Booked' %}
+                                <div><b>Status:  </b><b class="text-danger">{{booking[3]}}</b></div>
+                            {% endif %}
+                        {% set seat_numbers = get_seat_numbers_by_booking_id(booking[0]) %}
+                        <div><b>Seat Numbers: </b>
+                            {% for seat_number in seat_numbers %}
+                                {{seat_number[2]}}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% if session['role'] == 'user' %}
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    {% if booking[3] != 'Ticket Cancelled' %}
+                    <div class="col-md-4">
+                        <a href="/cancel_booking?booking_id={{booking[0]}}" class="btn btn-danger w-100">Cancel</a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

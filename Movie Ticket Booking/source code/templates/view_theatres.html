@@ -1,0 +1,15 @@
+{% include "admin_head.html" %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% for theatre in theatres %}
+        <div class="col-md-3">
+            <div class="card p-3 mt-5">
+                <img class="img-top" src="../static/picture/{{theatre[2]}}">
+                <div class="text-center h4"><b>{{theatre[1]}}</b></div>
+                <div class="text-center"><b>{{theatre[3]}}</b></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

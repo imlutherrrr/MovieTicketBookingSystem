@@ -1,0 +1,48 @@
+{% include "user_head.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <div class="card p-3 mt-5">
+                <h4 class="text-center">{{movie[1]}}</h4>
+                <div class="text-center h6">{{theatre[1]}}</div>
+                <div class="text-center h6">{{screen[5]}}</div>
+                <div><b>Total Amount:</b> ${{amount}}</div>
+                <div><b>Show Date:</b>  {{booking_date}}</div>
+                <div><b>Show Time:</b> {{str(timing[2])[:-3]}}</div>
+                <div><b>seat numbers:  </b>
+                    {% for selected_seat in selected_seats %}
+                        {{selected_seat}}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 mt-5">
+                <form action="payment" method="post">
+                    <input type="hidden" name="booking_id" id="booking_id" value="{{booking_id}}">
+                    <div>
+                        <label for="card_number" class="form-label">Card Number</label>
+                        <input type="number" id="card_number" name="card_number" placeholder="Enter card number" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="card_holder_name" class="form-label">Card Holder Name</label>
+                        <input type="text" id="card_holder_name" name="card_holder_name" placeholder="Enter card holder name" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="number" id="cvv" name="cvv" placeholder="Enter cvv" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                        <input type="text" id="expiry_date" name="expiry_date" placeholder="expiry_date" class="form-control" required>
+                    </div>
+                    <div class="mt-2">
+                        <input type="submit" value="PAY" id="btn" class="btn btn-success w-100">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

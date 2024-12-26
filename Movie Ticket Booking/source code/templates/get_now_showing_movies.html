@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-md-3">
+            <div class="movie mt-5">
+                <div class="text-center"><img class="movie_image" src="../static/picture/{{movie[2]}}" style="height:200px;width:max-width;"></div>
+                <div class="text-center h5">{{movie[1]}}</div>
+                <div><b>Duration:</b>{{movie[3]}}</div>
+                <div><b>Genre:</b>{{movie[4]}}</div>
+                <div class="description"><b>Description:</b>{{movie[5]}}</div>
+                <div><b>Release Date:</b>{{movie[7]}}</div>
+                {% if session['role'] == 'admin' %}
+                    <a href="view_bookings?movie_id={{movie[0]}}" class="btn btn-primary">View Bookings</a>
+                {% endif %}
+                <form action="now_showing_screens" method="post">
+                    <div class="mt-2">
+                        <input type="hidden" id="booking_date" name="booking_date" value="{{booking_date}}">
+                        <input type="hidden" id="movies_id" name="movies_id" value="{{movie[0]}}">
+                        <input type="submit" value="Book" class="btn btn-primary" id="btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

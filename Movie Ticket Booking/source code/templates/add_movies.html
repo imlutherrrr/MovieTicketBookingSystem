@@ -1,0 +1,42 @@
+{% include "admin_head.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 ">
+            <div class="card p-3 mt-2">
+                <h4 class="text-center">ADD MOVIES</h4>
+                <form action="add_movies1" method="post" enctype="multipart/form-data">
+                    <div>
+                        <label for="movie_name" class="form-label">Movie Name</label>
+                        <input type="text" id="movie_name" name="movie_name" placeholder="Enter Movie Name" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="picture" class="form-label">Movie Picture</label>
+                        <input type="file" id="picture" name="picture" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="duration" class="form-label">Duration</label>
+                        <input type="text" id="duration" name="duration" placeholder="Enter Duration" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="genre" class="form-label">Genre</label>
+                        <input type="text" id="genre" name="genre" placeholder="Enter genre" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="description" class="form-label">Description</label>
+                        <textarea placeholder="Enter description" id="description" name="description" class="form-control" required></textarea>
+                    </div>
+                    <div>
+                        <label for="release_date" class="form-label">Release_date</label>
+                        <input type="date" id="release_date" name="release_date" class="form-control" required>
+                    </div>
+                    <div class="mt-2">
+                        <input type="submit" value="Add Movie" class="btn btn-success w-100" id="btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

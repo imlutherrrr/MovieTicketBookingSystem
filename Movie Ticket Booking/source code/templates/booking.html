@@ -1,0 +1,72 @@
+{% if session['role'] == 'admin' %}
+    {% include "admin_head.html" %}
+{% elif session['role'] == 'user' %}
+    {% include "user_head.html" %}
+{% else %}
+    {% include "main_head.html" %}
+{% endif %}
+<style>
+    [type="checkbox"]{
+        display: none
+    }
+    .seat-available {
+        display:block;
+        background-color: white;
+        border: 1px solid grey;
+        width:50px;
+        height:50px;
+        padding-top:17px;
+        text-align:center;
+        border-radius:50%;
+    }
+    [type="checkbox"]:checked + .seat-available {
+        background-color: green;
+        color:white;
+    }
+</style>
+
+
+<form action="booking_action" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <input type="hidden" id="mow_showing_id" name="now_showing_id" value="{{now_showing[0]}}">
+                <input type="hidden" id="booking_date" name="booking_date" value="{{booking_date}}">
+                <input type="hidden" id="screen_id" name="screen_id" value="{{screen[0]}}">
+                <input type="hidden" id="timings_id" name="timings_id" value="{{timing[0]}}">
+                <input type="hidden" id="theatre_id" name="theatre_id" value="{{theatre[0]}}">
+                <div class="card p-3 mt-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="movie_image" src="../static/picture/{{movie[2]}}" style="height:140px;width:max-width;">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{movie[1]}}</h5>
+                            <h3><kbd>{{screen[5]}}</kbd></h3>
+                            <h5>{{theatre[1]}}</h5>
+                            <h5>{{booking_date}}</h5>
+                            <h5>Time: {{str(timing[2])[:-3]}}</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Book" id="btn" class="btn btn-primary w-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card p-3 mt-5">
+            <div class="row mt-2">
+            {% for i in range(1, int(screen[1])+1): %}
+                <div class="col-md-1 mt-2">
+                        <input type="checkbox"   name="seat_number{{i}}" id="seat_number{{i}}" value="{{i}}">
+                        <label for="seat_number{{i}}" class="seat-available">{{i}}</label>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</form>

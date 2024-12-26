@@ -1,0 +1,46 @@
+{% if session['role'] == 'admin' %}
+    {% include "admin_head.html" %}
+{% elif session['role'] == 'user' %}
+    {% include "user_head.html" %}
+{% else %}
+    {% include "main_head.html" %}
+{% endif %}
+
+<script>
+    $(document).ready(function(){
+        get_now_showing_movies()
+        $("#movie_name").on("keyup",function(){
+            get_now_showing_movies();
+        })
+        $("#booking_date").on("change",function(){
+            get_now_showing_movies();
+        })
+    });
+    function get_now_showing_movies(){
+        let movie_name = $("#movie_name").val()
+        let booking_date = $("#booking_date").val()
+        let url = "http://127.0.0.1:5000/get_now_showing_movies?movie_name="+movie_name+"&booking_date="+booking_date
+        $.get(url,function(data,status){
+            $("#now_showing_movies").html(data)
+        });
+    }
+
+
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-5">
+            <input type="search" name="movie_name" id="movie_name" placeholder="search movie" class="form-control">
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-2 mt-5">
+            <input type="date" name="booking_date" id="booking_date" class="form-control">
+        </div>
+    </div>
+</div>
+
+<div id="now_showing_movies">
+
+</div>

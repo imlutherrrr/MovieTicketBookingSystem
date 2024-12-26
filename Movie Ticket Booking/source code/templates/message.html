@@ -1,0 +1,23 @@
+{% if session['role'] == 'admin' %}
+    {% include "admin_head.html" %}
+{% elif session['role'] == 'user' %}
+    {% include "user_head.html" %}
+{% else %}
+    {% include "main_head.html" %}
+{% endif %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-5">
+            <div class="card p-3 mt-5">
+                <div class="text-center">
+                    <img class="img-top " src="https://imgs.search.brave.com/XHYWImzmHiBcXermLdVgkxh3NC9l18LlPTFm4a5NW8M/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZs/YXRpY29uLmNvbS8x/MjgvNzY0MS83NjQx/NzI3LnBuZw" style="height:70px;width:70px;border-radius:50%;" >
+                    <div><strong>{{message}}</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

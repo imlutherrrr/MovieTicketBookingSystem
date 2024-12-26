@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="row">
+        {% for screen in screens %}
+        {% set theatre = get_theatre_by_theatre_id(screen[4]) %}
+        <div class="col-md-6">
+            <div class="card p-3 mt-5">
+                <div class="text-center h4">{{screen[5]}}</div>
+                <div><b>Theatre:</b>   {{theatre[1]}}</div>
+                <div><b>Screen size:</b>   {{screen[2]}}</div>
+                <div><b>Sound:</b>   {{screen[3]}}</div>
+                <div><b>Number Of Seats:</b>   {{screen[1]}}</div>
+                <h5 class="text-center mt-3"><kbd>SHOWS</kbd></h5>
+                <div class="row">
+                    {% set timings = get_timings_by_screen_id(screen[0]) %}
+                    {% for timing in timings %}
+                    <div class="col-md-3">
+                        <div class="card p-1">
+                            <div class="text-center h6">{{str(timing[2])[:-3]}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div></div>
+                <form onsubmit="add_timings(event)">
+                    <h5 class="text-center mt-3"><kbd>ADD SHOW</kbd></h5>
+                    <div class="row">
+                        <input type="hidden" id="screen_id" value="{{screen[0]}}">
+                        <div class="col-md-6">
+                            <label for="show_time" class="show_time">Show Time</label>
+                            <input type="time" name="show_time" id="show_time" class="form-control" required >
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <input type="submit" value="Add" id="btn" class="btn btn-success w-100">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+

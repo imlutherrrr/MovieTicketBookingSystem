@@ -1,0 +1,39 @@
+{% if session['role'] == 'admin' %}
+    {% include "admin_head.html" %}
+{% elif session['role'] == 'user' %}
+    {% include "user_head.html" %}
+{% else %}
+    {% include "main_head.html" %}
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <input type="hidden" id="booking_date" name="booking_date" value="{{booking_date}}">
+        {% for theatre_id in theatre_ids %}
+        {% set theatre,now_showings = get_shows_by_theatre_id(theatre_id,booking_date,movies_id) %}
+        <div class="card p-3 mt-3">
+            <div class="col-md-6">
+                <div>{{theatre[1]}}</div>
+                    {% for now_showing in now_showings %}
+                    {% set screens = get_screen_by_screen_id(now_showing[3]) %}
+                    <div class="card p-3 ">
+                        <div class="row">
+                            <div class="col-md-4">{{screens[5]}}</div>
+                            {% set timings = get_timings_by_screen_id(now_showing[3]) %}
+                            <div class="col-md-8">
+                                <div class="row">
+                                    {% for timing in timings %}
+                                    <div class="col-md-3">
+                                        <a href="/booking?timing_id={{timing[0]}}&screen_id={{screens[0]}}&movies_id={{movies_id}}&booking_date={{booking_date}}" class="btn btn-primary">{{str(timing[2])[:-3]}}</a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{% include "admin_head.html" %}
+
+<script>
+    $(document).ready(function(){
+        get_movies()
+        $("#movie_name").on("keyup",function(){
+            get_movies();
+        })
+    });
+    function get_movies(){
+        let movie_name = $("#movie_name").val()
+        let url = "http://127.0.0.1:5000/get_movies?movie_name="+movie_name
+        $.get(url,function(data,status){
+            $("#movies").html(data)
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mt-5">
+            <input type="search" name="movie_name" id="movie_name" class="form-control" placeholder="search movies" >
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+<div id="movies">
+
+</div>
